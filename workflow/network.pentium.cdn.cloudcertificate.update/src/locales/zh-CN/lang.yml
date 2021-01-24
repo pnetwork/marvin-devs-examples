@@ -1,0 +1,32 @@
+graph.edges.0_2.metadata.binding.tags_expired.0.value: ''
+graph.edges.6_8.metadata.binding.template_string.value: '{% for s in wf_obj.changed_success
+  -%}
+
+  已延长 [[s.fqdn]] 的证书，到期日为 [[s.expired_date]]
+
+  {% endfor -%}
+
+  {% for s in wf_obj.changed_failed -%}
+
+  [[s.fqdn]] 的证书更新失败，到期日为 [[s.expired_date]]
+
+  {% endfor -%}'
+graph.edges.8_9.metadata.binding.str_message.value: ''
+graph.metadata.description: 新增证书后自动触发更新 CDN 证书
+graph.metadata.title: 自动更新 CDN 使用证书
+graph.nodes.0.metadata.description: ''
+graph.nodes.0.metadata.title: ''
+graph.nodes.1.metadata.description: ''
+graph.nodes.1.metadata.title: ''
+graph.nodes.2.metadata.description: 取出所有需用此证书替换的 CDN
+graph.nodes.2.metadata.title: 取出所有需用此证书替换的 CDN
+graph.nodes.5.metadata.description: 将证书配发至 CDN 的云帐号下
+graph.nodes.5.metadata.title: 将证书配发至 CDN 的云帐号下
+graph.nodes.6.metadata.description: 是否需要替换证书
+graph.nodes.6.metadata.title: 是否需要替换证书
+graph.nodes.7.metadata.description: ''
+graph.nodes.7.metadata.title: ''
+graph.nodes.8.metadata.description: 优化讯息格式
+graph.nodes.8.metadata.title: 优化讯息格式
+graph.nodes.9.metadata.description: 传送 CDN 更新证书讯息至指定频道/聊天机器人
+graph.nodes.9.metadata.title: 传送讯息至指定频道

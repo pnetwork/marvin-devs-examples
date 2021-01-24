@@ -1,0 +1,110 @@
+$schema: 'http://json-schema.pentium.network/marvin-workflows/0.1/schema'
+graph:
+  metadata:
+    version: 0.3.1
+    templateId: network.pentium.letsencrypt.certificate.apply
+    title: 產生 Lets Encrypt 憑證
+    author: pentium
+    description: '由事件 [ 產生 Let''s Encrypt 憑證 ] 觸發'
+  edges:
+    - source: '0'
+      target: '4'
+      metadata:
+        binding:
+          - property: domain_id
+            type: string
+            value: '{{ 0.data.domain_id }}'
+          - property: test_mode
+            type: string
+            value: 'false'
+    - source: '4'
+      target: '5'
+    - source: '5'
+      target: '1'
+      metadata:
+        filters:
+          property: nodes.4.failed
+          value: false
+          operator: ==
+    - source: '6'
+      target: '7'
+      metadata:
+        binding:
+          - property: str_message
+            type: string
+            value: '{{ 6.result }}'
+    - source: '7'
+      target: '1'
+    - source: '5'
+      target: '6'
+      metadata:
+        filters:
+          property: nodes.4.failed
+          value: true
+          operator: ==
+        binding:
+          - property: wf_obj
+            type: object
+            value: '{{ 4 }}'
+          - property: template_string
+            type: string
+            value: >-
+              域名[ [[wf_obj.domain_name ]] ]([[wf_obj.domain_id]]) 申請 Let's
+              Encrypt 憑證失敗 !!
+  nodes:
+    - id: '0'
+      metadata:
+        type: trigger
+        sources: []
+        marvinProperties:
+          position:
+            xAxis: 165
+            yAxis: 275
+    - id: '1'
+      metadata:
+        type: terminator
+        description: ''
+        marvinProperties:
+          position:
+            xAxis: 1540
+            yAxis: 275
+    - id: '4'
+      metadata:
+        type: action
+        title: 透過 let's encrypt 生成憑證，並存入 Marvin
+        description: ''
+        marvinProperties:
+          position:
+            xAxis: 440
+            yAxis: 275
+        script:
+          id: blcksacmesh
+    - id: '5'
+      metadata:
+        type: selector
+        marvinProperties:
+          position:
+            xAxis: 715
+            yAxis: 275
+    - id: '6'
+      metadata:
+        type: action
+        title: 利用 Jinja2 優化訊息格式
+        description: 利用 Jinja2 優化訊息格式
+        marvinProperties:
+          position:
+            xAxis: 990
+            yAxis: 440
+        script:
+          id: templateengine
+    - id: '7'
+      metadata:
+        type: action
+        title: 訊息發送器
+        description: 從 input 讀取一段文字發送到指定的 IM 群內
+        marvinProperties:
+          position:
+            xAxis: 1265
+            yAxis: 440
+        script:
+          id: notification

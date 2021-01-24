@@ -1,0 +1,19 @@
+graph.edges.0_1.metadata.binding.provider.value: ''
+graph.edges.3_2.metadata.binding.str_message.value: Please replenish below account(s)
+  that balance is below 5000:{{1.accounts}}
+graph.metadata.description: Regularly check the balance of the designated account.
+  If it is below a certain level (balance threshold), send a notification to the designated
+  channel/chatbot.
+graph.metadata.title: Check Alibaba Cloud account balance
+graph.nodes.0.metadata.description: ''
+graph.nodes.0.metadata.title: ''
+graph.nodes.1.metadata.description: Check account balance
+graph.nodes.1.metadata.title: Check account balance
+graph.nodes.10.metadata.description: ''
+graph.nodes.10.metadata.title: ''
+graph.nodes.2.metadata.description: Send notification to speficied channel/chatbot
+graph.nodes.2.metadata.title: Send notification to speficied channel
+graph.nodes.3.metadata.description: Whether the balance is lower than threshold
+graph.nodes.3.metadata.title: Whether the balance is lower than threshold
+graph.nodes.4.metadata.description: ''
+graph.nodes.4.metadata.title: ''

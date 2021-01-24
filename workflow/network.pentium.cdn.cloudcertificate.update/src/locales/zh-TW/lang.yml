@@ -1,0 +1,32 @@
+graph.edges.0_2.metadata.binding.tags_expired.0.value: ''
+graph.edges.6_8.metadata.binding.template_string.value: '{% for s in wf_obj.changed_success
+  -%}
+
+  已延長 [[s.fqdn]] 的憑證，到期日為 [[s.expired_date]]
+
+  {% endfor -%}
+
+  {% for s in wf_obj.changed_failed -%}
+
+  [[s.fqdn]] 的憑證更新失敗，到期日為 [[s.expired_date]]
+
+  {% endfor -%}'
+graph.edges.8_9.metadata.binding.str_message.value: ''
+graph.metadata.description: 新增憑證後自動觸發更新 CDN 憑證
+graph.metadata.title: 自動更新 CDN 使用憑證
+graph.nodes.0.metadata.description: ''
+graph.nodes.0.metadata.title: ''
+graph.nodes.1.metadata.description: ''
+graph.nodes.1.metadata.title: ''
+graph.nodes.2.metadata.description: 取出所有需用此憑證替換的 CDN
+graph.nodes.2.metadata.title: 取出所有需用此憑證替換的 CDN
+graph.nodes.5.metadata.description: 將憑證配發至 CDN 的雲帳號下
+graph.nodes.5.metadata.title: 將憑證配發至 CDN 的雲帳號下
+graph.nodes.6.metadata.description: 是否需要替換憑證
+graph.nodes.6.metadata.title: 是否需要替換憑證
+graph.nodes.7.metadata.description: ''
+graph.nodes.7.metadata.title: ''
+graph.nodes.8.metadata.description: 優化訊息格式
+graph.nodes.8.metadata.title: 優化訊息格式
+graph.nodes.9.metadata.description: 傳送 CDN 更新憑證訊息至指定頻道/聊天機器人
+graph.nodes.9.metadata.title: 傳送訊息至指定頻道

@@ -1,0 +1,20 @@
+graph.edges.0_4.metadata.binding.domain_id.value: ''
+graph.edges.0_4.metadata.binding.test_mode.value: ''
+graph.edges.5_6.metadata.binding.template_string.value: Domain[ [[wf_obj.domain_name
+  ]] ]([[wf_obj.domain_id]]) apply Let's Encrypt certificate failed !!
+graph.edges.6_7.metadata.binding.str_message.value: ''
+graph.metadata.description: Triggered by the event [Generate Let's Encrypt certificate]
+graph.metadata.title: Generate Let's Encrypt certificate
+graph.nodes.0.metadata.description: ''
+graph.nodes.0.metadata.title: ''
+graph.nodes.1.metadata.description: ''
+graph.nodes.1.metadata.title: ''
+graph.nodes.4.metadata.description: Generate a certificate through Let's Encrypt and
+  store it in Marvin
+graph.nodes.4.metadata.title: Generate certificate
+graph.nodes.5.metadata.description: Whether the credential generation failed
+graph.nodes.5.metadata.title: Whether the credential generation failed
+graph.nodes.6.metadata.description: Organize message format
+graph.nodes.6.metadata.title: Organize message format
+graph.nodes.7.metadata.description: Send notification to speficied channel/chatbot
+graph.nodes.7.metadata.title: Send notification to speficied channel

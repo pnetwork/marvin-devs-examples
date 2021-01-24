@@ -1,0 +1,20 @@
+graph.metadata.description: 定期执行, 检测过期/即将过期证书,并使用發出事件, 让 Let's Encrypt 自动申请证书
+graph.metadata.title: 检测过期证书
+graph.nodes.0.metadata.description: ''
+graph.nodes.0.metadata.title: ''
+graph.nodes.1.metadata.description: ''
+graph.nodes.1.metadata.title: ''
+graph.nodes.2.metadata.description: 根据参数 "几天后过期"，找出所有即将过期证书
+graph.nodes.2.metadata.title: 找出所有过期证书
+graph.nodes.3.metadata.description: 于所有过期凭证中过滤不具有 Expired 标籤的证书
+graph.nodes.3.metadata.title: 过滤不具有 Expired 标籤的证书
+graph.nodes.4.metadata.description: ''
+graph.nodes.4.metadata.title: 凭证打上 Expired 标籤
+graph.nodes.5.metadata.description: 發出事件产生 Let's Encrypt 证书
+graph.nodes.5.metadata.title: 發出事件产生 Let's Encrypt 证书
+graph.nodes.6.metadata.description: 是否有符合条件证书
+graph.nodes.6.metadata.title: 是否有符合条件证书
+graph.nodes.7.metadata.description: 取出被打上标籤的凭证内容
+graph.nodes.7.metadata.title: 取出证书内容
+graph.nodes.8.metadata.description: 取得过期证书之域名 ID
+graph.nodes.8.metadata.title: 取得域名 ID

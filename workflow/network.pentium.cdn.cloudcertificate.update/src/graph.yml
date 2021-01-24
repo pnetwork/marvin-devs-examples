@@ -1,0 +1,147 @@
+$schema: 'http://json-schema.pentium.network/marvin-workflows/0.1/schema'
+graph:
+  metadata:
+    version: 0.4.2
+    templateId: network.pentium.cdn.cloudcertificate.update
+    title: 新增憑證後，自動更新CDN使用憑證
+    author: pentium
+    description: 新增憑證自動觸發更新 CDN 憑證
+  edges:
+    - source: '0'
+      target: '2'
+      metadata:
+        binding:
+          - property: certificates
+            type: array
+            value: '{{ 0.reservation.after }}'
+          - property: tags_expired.0
+            type: string
+            value: Expired
+    - source: '5'
+      target: '6'
+      metadata:
+        binding:
+          - property: cdn_with_new_cloudcertificate
+            type: array
+            value: '{{ 5.cdn_with_new_cloudcertificate }}'
+          - property: failed_cdns
+            type: array
+            value: '{{ 5.failed_cdn }}'
+    - source: '2'
+      target: '7'
+    - source: '7'
+      target: '5'
+      metadata:
+        binding:
+          - property: distribute_cert_to_cdns
+            type: array
+            value: '{{ 2.all_related_cdn }}'
+    - source: '7'
+      target: '1'
+    - source: '6'
+      target: '8'
+      metadata:
+        binding:
+          - property: wf_obj
+            type: object
+            value: '{{ 6.result }}'
+          - property: template_string
+            type: string
+            value: |-
+              {% for s in wf_obj.changed_success -%}
+              已延長 [[s.fqdn]] 的憑證，到期日為 [[s.expired_date]]
+              {% endfor -%}
+              {% for s in wf_obj.changed_failed -%}
+              [[s.fqdn]] 的憑證更新失敗，到期日為 [[s.expired_date]]
+              {% endfor -%}
+    - source: '8'
+      target: '9'
+      metadata:
+        binding:
+          - property: str_message
+            type: string
+            value: '{{ 8.result }}'
+    - source: '9'
+      target: '1'
+  nodes:
+    - id: '0'
+      metadata:
+        type: trigger
+        sources:
+          - type: event
+            data: >-
+              network.pentium.platform.logging::network.pentium.asset.certificate.import.success::0.1.0
+        marvinProperties:
+          position:
+            xAxis: 165
+            yAxis: 275
+    - id: '1'
+      metadata:
+        type: terminator
+        description: ''
+        marvinProperties:
+          position:
+            xAxis: 2090
+            yAxis: 275
+    - id: '2'
+      metadata:
+        type: action
+        title: 取出所有需用此憑證替換的CDN
+        description: ''
+        marvinProperties:
+          position:
+            xAxis: 440
+            yAxis: 275
+        script:
+          id: blcksgetrelatedcdn
+    - id: '5'
+      metadata:
+        type: action
+        title: 將憑證配發至CDN的雲帳號下
+        description: ''
+        marvinProperties:
+          position:
+            xAxis: 990
+            yAxis: 440
+        script:
+          id: blckscertdistribute
+    - id: '6'
+      metadata:
+        type: action
+        title: 更新 CDN 所使用的憑證
+        description: ''
+        marvinProperties:
+          position:
+            xAxis: 1265
+            yAxis: 440
+        script:
+          id: blcksupdatecloudcertificate
+    - id: '7'
+      metadata:
+        type: selector
+        marvinProperties:
+          position:
+            xAxis: 715
+            yAxis: 275
+    - id: '8'
+      metadata:
+        type: action
+        title: 利用 Jinja2 優化訊息格式
+        description: ''
+        marvinProperties:
+          position:
+            xAxis: 1540
+            yAxis: 440
+        script:
+          id: templateengine
+    - id: '9'
+      metadata:
+        type: action
+        title: 發送訊息
+        description: 將 CDN 更新憑證訊息發送至指定頻道
+        marvinProperties:
+          position:
+            xAxis: 1815
+            yAxis: 440
+        script:
+          id: notification

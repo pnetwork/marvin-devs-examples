@@ -1,0 +1,19 @@
+graph.edges.0_4.metadata.binding.domain_id.value: ''
+graph.edges.0_4.metadata.binding.test_mode.value: ''
+graph.edges.5_6.metadata.binding.template_string.value: 域名[ [[wf_obj.domain_name ]]
+  ]([[wf_obj.domain_id]]) 申请 Let's Encrypt 证书失败 !!
+graph.edges.6_7.metadata.binding.str_message.value: ''
+graph.metadata.description: 由事件 [ 产生 Let's Encrypt 证书 ] 触发
+graph.metadata.title: 产生 Let's Encrypt 證書
+graph.nodes.0.metadata.description: ''
+graph.nodes.0.metadata.title: ''
+graph.nodes.1.metadata.description: ''
+graph.nodes.1.metadata.title: ''
+graph.nodes.4.metadata.description: 透过 Let's Encrypt 生成证书，并存入 Marvin
+graph.nodes.4.metadata.title: 生成证书
+graph.nodes.5.metadata.description: 是否证书生成失败
+graph.nodes.5.metadata.title: 是否证书生成失败
+graph.nodes.6.metadata.description: 优化讯息格式
+graph.nodes.6.metadata.title: 优化讯息格式
+graph.nodes.7.metadata.description: 传送讯息至指定频道/聊天机器人
+graph.nodes.7.metadata.title: 传送讯息至指定频道

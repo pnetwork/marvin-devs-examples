@@ -1,0 +1,16 @@
+graph.edges.0_1.metadata.binding.provider.value: ''
+graph.edges.3_2.metadata.binding.str_message.value: 以下帳戶餘額低於5000，請記得儲值:{{1.accounts}}
+graph.metadata.description: 定期檢查指定帳戶下的餘額，如果低於某個水位 (餘額閥值) 則發送通知至指定頻道/聊天機器人
+graph.metadata.title: 阿里雲帳戶餘額告警
+graph.nodes.0.metadata.description: ''
+graph.nodes.0.metadata.title: ''
+graph.nodes.1.metadata.description: 偵測帳戶餘額
+graph.nodes.1.metadata.title: 偵測帳戶餘額
+graph.nodes.10.metadata.description: ''
+graph.nodes.10.metadata.title: ''
+graph.nodes.2.metadata.description: 傳送訊息至指定頻道/聊天機器人
+graph.nodes.2.metadata.title: 傳送訊息至指定頻道
+graph.nodes.3.metadata.description: 是否餘額低於閥值
+graph.nodes.3.metadata.title: 是否餘額低於閥值
+graph.nodes.4.metadata.description: ''
+graph.nodes.4.metadata.title: ''

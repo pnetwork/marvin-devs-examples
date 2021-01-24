@@ -1,0 +1,19 @@
+graph.edges.0_4.metadata.binding.domain_id.value: ''
+graph.edges.0_4.metadata.binding.test_mode.value: ''
+graph.edges.5_6.metadata.binding.template_string.value: 網域[ [[wf_obj.domain_name ]]
+  ]([[wf_obj.domain_id]]) 申請 Let's Encrypt 憑證失敗 !!
+graph.edges.6_7.metadata.binding.str_message.value: ''
+graph.metadata.description: 由事件 [ 產生 Let's Encrypt 憑證 ] 觸發
+graph.metadata.title: 產生 Let's Encrypt 憑證
+graph.nodes.0.metadata.description: ''
+graph.nodes.0.metadata.title: ''
+graph.nodes.1.metadata.description: ''
+graph.nodes.1.metadata.title: ''
+graph.nodes.4.metadata.description: 透過 Let's Encrypt 生成憑證，並存入 Marvin
+graph.nodes.4.metadata.title: 生成憑證
+graph.nodes.5.metadata.description: 是否憑證生成失敗
+graph.nodes.5.metadata.title: 是否憑證生成失敗
+graph.nodes.6.metadata.description: 優化訊息格式
+graph.nodes.6.metadata.title: 優化訊息格式
+graph.nodes.7.metadata.description: 傳送訊息至指定頻道/聊天機器人
+graph.nodes.7.metadata.title: 傳送訊息至指定頻道

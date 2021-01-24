@@ -1,0 +1,16 @@
+graph.edges.0_1.metadata.binding.provider.value: ''
+graph.edges.3_2.metadata.binding.str_message.value: '以下帐户余额低于5000，请记得充值: {{1.accounts}}'
+graph.metadata.description: 定期检查指定帐户下的余额，如果低于某个水位 (余额阀值) 则发送通知至指定频道/聊天机器人
+graph.metadata.title: 阿里云帐户余额告警
+graph.nodes.0.metadata.description: ''
+graph.nodes.0.metadata.title: ''
+graph.nodes.1.metadata.description: 侦测帐户余额
+graph.nodes.1.metadata.title: 侦测帐户余额
+graph.nodes.10.metadata.description: ''
+graph.nodes.10.metadata.title: ''
+graph.nodes.2.metadata.description: 传送讯息至指定频道/聊天机器人
+graph.nodes.2.metadata.title: 传送讯息至指定频道
+graph.nodes.3.metadata.description: 是否余额低于阀值
+graph.nodes.3.metadata.title: 是否余额低于阀值
+graph.nodes.4.metadata.description: ''
+graph.nodes.4.metadata.title: ''

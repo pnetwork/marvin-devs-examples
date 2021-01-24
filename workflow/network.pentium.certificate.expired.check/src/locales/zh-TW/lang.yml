@@ -1,0 +1,20 @@
+graph.metadata.description: 定期執行, 檢測過期/即將過期憑證,並使用發出事件, 讓 Let's Encrypt 自動申請憑證
+graph.metadata.title: 檢測過期憑證
+graph.nodes.0.metadata.description: ''
+graph.nodes.0.metadata.title: ''
+graph.nodes.1.metadata.description: ''
+graph.nodes.1.metadata.title: ''
+graph.nodes.2.metadata.description: 根據參數 "幾天後過期"，找出所有即將過期憑證
+graph.nodes.2.metadata.title: 找出所有過期憑證
+graph.nodes.3.metadata.description: 於所有過期憑證中過濾不具有 Expired 標籤的憑證
+graph.nodes.3.metadata.title: 過濾不具有 Expired 標籤的憑證
+graph.nodes.4.metadata.description: ''
+graph.nodes.4.metadata.title: 憑證打上 Expired 標籤
+graph.nodes.5.metadata.description: 發出事件產生 Let's Encrypt 憑證
+graph.nodes.5.metadata.title: 發出事件產生 Let's Encrypt 憑證
+graph.nodes.6.metadata.description: 是否有符合條件憑證
+graph.nodes.6.metadata.title: 是否有符合條件憑證
+graph.nodes.7.metadata.description: 取出被打上標籤的憑證內容
+graph.nodes.7.metadata.title: 取出憑證內容
+graph.nodes.8.metadata.description: 取得过期憑證之網域 ID
+graph.nodes.8.metadata.title: 取得網域 ID

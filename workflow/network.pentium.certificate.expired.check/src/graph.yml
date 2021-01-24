@@ -1,0 +1,183 @@
+$schema: 'http://json-schema.pentium.network/marvin-workflows/0.1/schema'
+graph:
+  metadata:
+    version: 0.3.0
+    templateId: network.pentium.certificate.expired.check
+    title: 檢測過期憑證
+    author: pentium
+    description: '定期執行, 檢測過期/即將過期域名,並使用發出事件, 讓 Let''s Encrypt 自動申請憑證'
+  edges:
+    - source: '0'
+      target: '2'
+      metadata:
+        binding:
+          - property: expired_within_days
+            type: integer
+            value: '5'
+    - source: '2'
+      target: '3'
+      metadata:
+        binding:
+          - property: resource_type
+            type: string
+            value: CERTIFICATE
+          - property: tag_filer.0.tag_name
+            type: string
+            value: Expired
+          - property: tag_filer.0.tagged_on_asset
+            type: string
+            value: 'False'
+          - property: resource_id
+            type: array
+            value: '{{ 2.expired_ssl_list[].id }}'
+    - source: '5'
+      target: '1'
+    - source: '3'
+      target: '6'
+    - source: '6'
+      target: '4'
+      metadata:
+        filters:
+          property: nodes.3.matched_resource_ids
+          operator: sizeGreaterThan
+          value: '0'
+        binding:
+          - property: name
+            type: string
+            value: Expired
+          - property: tagged
+            type: boolean
+            value: 'true'
+          - property: asset_type
+            type: string
+            value: CERTIFICATE
+          - property: ids
+            type: array
+            value: '{{ 3.matched_resource_ids }}'
+    - source: '6'
+      target: '1'
+      metadata:
+        filters:
+          property: nodes.3.matched_resource_ids
+          value: '0'
+          operator: sizeEquals
+    - source: '4'
+      target: '7'
+      metadata:
+        binding:
+          - property: resource_ids
+            type: array
+            value: '{{ 3.matched_resource_ids }}'
+          - property: asset_type
+            type: string
+            value: CERTIFICATE
+    - source: '7'
+      target: '8'
+      metadata:
+        binding:
+          - property: fqdns
+            type: array
+            value: '{{ 7.data[].altnames[0] }}'
+    - source: '8'
+      target: '5'
+      metadata:
+        binding:
+          - property: domains
+            type: string
+            value: '{{ 8.domain_ids[0] }}'
+          - property: domain_ids
+            type: array
+            value: '{{ 8.domain_ids }}'
+  nodes:
+    - id: '0'
+      metadata:
+        type: trigger
+        sources:
+          - type: cron
+            data: '00 09 * * *::Atlantic/Reykjavik'
+        marvinProperties:
+          position:
+            xAxis: 165
+            yAxis: 275
+    - id: '1'
+      metadata:
+        type: terminator
+        description: ''
+        marvinProperties:
+          position:
+            xAxis: 2365
+            yAxis: 275
+    - id: '2'
+      metadata:
+        type: action
+        title: 找出所有過期憑證
+        description: ''
+        marvinProperties:
+          position:
+            xAxis: 440
+            yAxis: 275
+        script:
+          id: blckscheckexpiredssl
+    - id: '3'
+      metadata:
+        type: action
+        title: 過濾不具有 expired 標籤的憑證
+        description: ''
+        marvinProperties:
+          position:
+            xAxis: 715
+            yAxis: 275
+        script:
+          id: blcksassettagfilter
+    - id: '4'
+      metadata:
+        type: action
+        title: 憑證打上 Expired 標籤
+        description: |
+          將不具有 Expired 標籤的憑證打上標籤
+        marvinProperties:
+          position:
+            xAxis: 1265
+            yAxis: 440
+        script:
+          id: blckssettags
+    - id: '5'
+      metadata:
+        type: action
+        title: 發出 let's encrypt 憑證產生事件
+        description: ''
+        marvinProperties:
+          position:
+            xAxis: 2090
+            yAxis: 440
+        script:
+          id: blcksmarvineventcallback
+    - id: '6'
+      metadata:
+        type: selector
+        marvinProperties:
+          position:
+            xAxis: 990
+            yAxis: 275
+    - id: '7'
+      metadata:
+        type: action
+        title: 取出憑證內容
+        description: 取出被打上標籤的憑證內容
+        marvinProperties:
+          position:
+            xAxis: 1540
+            yAxis: 440
+        script:
+          id: blcksgetassets
+    - id: '8'
+      metadata:
+        type: action
+        title: 取得域名ID
+        description: 取得域名ID
+        marvinProperties:
+          position:
+            xAxis: 1815
+            yAxis: 440
+        script:
+          id: blcksgetdomainids

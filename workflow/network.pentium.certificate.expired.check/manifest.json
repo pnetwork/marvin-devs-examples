@@ -1,0 +1,9 @@
+{
+    "entry": "src/graph.yml",
+    "locales": {
+        "zh-CN": "src/locales/zh-CN",
+        "zh-TW": "src/locales/zh-TW",
+        "en-US": "src/locales/en-US",
+        "ja-JP": "src/locales/ja-JP"
+    }
+}

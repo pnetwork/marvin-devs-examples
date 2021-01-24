@@ -1,0 +1,98 @@
+$schema: 'http://json-schema.pentium.network/marvin-workflows/0.1/schema'
+graph:
+  metadata:
+    version: 0.6.1
+    templateId: network.pentium.accountbalances.aliyun.chatbot
+    title: 阿里云帐户余额告警
+    author: ''
+    description: 每一小时检查一次指定帐户下的余额，如果低于某个水位 (余额阀值) 则发送短信至指定聊天室
+  edges:
+    - source: '1'
+      target: '3'
+    - source: '3'
+      target: '2'
+      metadata:
+        filters:
+          property: nodes.1.count
+          operator: '>'
+          value: 0
+        binding:
+          - property: str_message
+            type: string
+            value: '以下帐户余额低于5000，请记得充值: {{1.accounts}}'
+    - source: '2'
+      target: '4'
+    - source: '0'
+      target: '1'
+      metadata:
+        binding:
+          - property: provider
+            type: string
+            value: aliyun
+          - property: balances
+            type: number
+            value: '5000'
+    - source: '3'
+      target: '4'
+      metadata:
+        filters:
+          property: nodes.1.count
+          operator: <=
+          value: 0
+  nodes:
+    - id: '0'
+      metadata:
+        type: trigger
+        sources:
+          - type: cron
+            data: '0 * * * *::Atlantic/Reykjavik'
+        marvinProperties:
+          position:
+            xAxis: 165
+            yAxis: 275
+    - id: '1'
+      metadata:
+        type: action
+        title: 偵測帳戶餘額
+        description: ''
+        marvinProperties:
+          position:
+            xAxis: 440
+            yAxis: 275
+        script:
+          id: balances
+    - id: '2'
+      metadata:
+        type: action
+        title: 发送短信至指定聊天室
+        description: 发送短信至指定聊天室
+        marvinProperties:
+          position:
+            xAxis: 990
+            yAxis: 440
+        script:
+          id: notification
+    - id: '3'
+      metadata:
+        type: selector
+        marvinProperties:
+          position:
+            xAxis: 715
+            yAxis: 275
+    - id: '4'
+      metadata:
+        type: terminator
+        description: ''
+        marvinProperties:
+          position:
+            xAxis: 1265
+            yAxis: 275
+    - id: '10'
+      metadata:
+        type: exception
+        marvinProperties:
+          position:
+            xAxis: 495
+            yAxis: 245
+        script:
+          id: wfexception

@@ -1,0 +1,22 @@
+graph.metadata.description: Regularly check domains expired/expire soon, and trigger
+  event to auto apply certificate with Let's Encrypt
+graph.metadata.title: ''
+graph.nodes.0.metadata.description: ''
+graph.nodes.0.metadata.title: ''
+graph.nodes.1.metadata.description: ''
+graph.nodes.1.metadata.title: ''
+graph.nodes.2.metadata.description: Based on setting of expired days, find out all
+  expired certificate
+graph.nodes.2.metadata.title: ''
+graph.nodes.3.metadata.description: Filter certificate that do not have expired tag
+graph.nodes.3.metadata.title: Filter certificate that do not have expired tag
+graph.nodes.4.metadata.description: ''
+graph.nodes.4.metadata.title: Tag certificate with expired
+graph.nodes.5.metadata.description: ''
+graph.nodes.5.metadata.title: Send out event to triggger creating Let's Encrypt certificate
+graph.nodes.6.metadata.description: Is there a qualified certificate?
+graph.nodes.6.metadata.title: Is there a qualified certificate?
+graph.nodes.7.metadata.description: Retrieve content from tagged certificate
+graph.nodes.7.metadata.title: Retrieve certificate content
+graph.nodes.8.metadata.description: Retrieve domain ID
+graph.nodes.8.metadata.title: Retrieve domain ID

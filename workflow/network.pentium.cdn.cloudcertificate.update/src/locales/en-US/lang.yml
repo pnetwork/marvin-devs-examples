@@ -1,0 +1,34 @@
+graph.edges.0_2.metadata.binding.tags_expired.0.value: ''
+graph.edges.6_8.metadata.binding.template_string.value: '{% for s in wf_obj.changed_success
+  -%}
+
+  Certificate of [[s.fqdn]] expansion has succeed,the new expire date is [[s.expired_date]]
+
+  {% endfor -%}
+
+  {% for s in wf_obj.changed_failed -%}
+
+  Certificate of [[s.fqdn]] renewal has failed,the expired date is [[s.expired_date]]
+
+  {% endfor -%}'
+graph.edges.8_9.metadata.binding.str_message.value: ''
+graph.metadata.description: CDN certificate update is automatically triggered after
+  adding a certificate
+graph.metadata.title: Automatically update certificate use for CDN
+graph.nodes.0.metadata.description: ''
+graph.nodes.0.metadata.title: ''
+graph.nodes.1.metadata.description: ''
+graph.nodes.1.metadata.title: ''
+graph.nodes.2.metadata.description: Get all CDNs that need to be replaced with this
+  certificate
+graph.nodes.2.metadata.title: Get all CDNs that need to be replaced with this certificate
+graph.nodes.5.metadata.description: Deploy the certificate to the CDN cloud account
+graph.nodes.5.metadata.title: Deploy the certificate to the CDN cloud account
+graph.nodes.6.metadata.description: Whether we need to replace the certificate
+graph.nodes.6.metadata.title: Whether we need to replace the certificate
+graph.nodes.7.metadata.description: ''
+graph.nodes.7.metadata.title: ''
+graph.nodes.8.metadata.description: Organize message format
+graph.nodes.8.metadata.title: Organize message format
+graph.nodes.9.metadata.description: Send CDN update notification to speficied channel/chatbot
+graph.nodes.9.metadata.title: Send notification to speficied channel
